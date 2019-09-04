@@ -1,0 +1,4 @@
+{
+    "mongoUri": "mongodb+srv://tram123:tram123@cluster0-xmjzq.mongodb.net/test?retryWrites=true&w=majority",
+    "jwtsecret": "mySecret"
+}

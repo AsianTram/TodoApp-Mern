@@ -1,0 +1,33 @@
+/* Landing Page */
+.landing {
+  position: relative;
+  background: url('./images/todo-list-landing.jpg') no-repeat center center/cover;
+  height: 100vh;
+}
+.landing-inner{
+  height: 100%;
+  width: 60%;
+  margin: auto;
+  padding-top: 15%;
+  text-align: center;
+  color:white;
+}
+
+/* Sign Up Page */
+.signup{
+  width: 80%;
+  margin: 2% auto;
+}
+
+/* Login Page */
+.login{
+  width: 80%;
+  margin: 2% auto;
+}
+
+/* Task Item */
+.card{
+  width: 60%;
+  margin: 2% auto;
+}
+
