@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {GET_TODO, GET_TODO_ERROR} from './types';
+import {GET_TODO, GET_TODO_ERROR, ADD_TODO, ADD_TODO_ERROR, CHECK_DONE, CHECK_DONE_ERROR, DELETE_TODO, DELETE_TODO_ERROR} from './types';
 
 export const getTodos= ()=> async dispatch =>{
     try {
@@ -13,6 +13,62 @@ export const getTodos= ()=> async dispatch =>{
             type: GET_TODO_ERROR,
             payload:{msg: error.response.statusText, status: error.response.status}
         })
+    }
+        
+    
+}
+
+export const addTodo= ({task, location, duedate, description})=> async dispatch=>{
+    const config= {
+        headers:{
+            "Content-Type": "application/json"
+        }
+    };
+    const formData=JSON.stringify({task, location, duedate, description});
+    try {
+        const res= await axios.post("/api/todo/", formData, config);
+        dispatch({
+            type: ADD_TODO,
+            payload: res.data
+        })
+    } catch (error) {
+        console.log(error);
+        dispatch({
+            type: ADD_TODO_ERROR
+        })
+        
+    }
+}
+
+export const checkDone= (taskid)=> async dispatch =>{
+    try {
+        const res= await axios.put(`/api/todo/done/${taskid}`);
+        dispatch({
+            type: CHECK_DONE,
+            payload: res.data
+        })
+    } catch (error) {
+        dispatch({
+            type: CHECK_DONE_ERROR
+                })
+    }
+        
+    
+}
+
+export const deleteTask_Todo= (taskid)=> async dispatch =>{
+    try {
+        const res= await axios.delete(`/api/todo/delete/${taskid}`);
+        console.log("hello");
+        dispatch({
+            type: DELETE_TODO,
+            payload: res.data
+        })
+        console.log("hello 2");
+    } catch (error) {
+        dispatch({
+            type: DELETE_TODO_ERROR
+                })
     }
         
     

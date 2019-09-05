@@ -11,10 +11,10 @@ const Due = ({getDues, due:{dues, loading}}) => {
     },[getDues]);
     return (
         <Fragment>
-            <h1>Due List</h1>
-            {!loading && dues!== null ? (<Fragment>
+            <h1 style={{textAlign:'center'}}>Due List</h1>
+            {!loading && dues!== null && dues.length>0 ? (<Fragment>
                 {dues.map(due => (<DueItem key={due._id} due={due}/>))}
-            </Fragment>) : (<p>There is no Due to show</p>)}
+            </Fragment>) : (<h5 style={{textAlign:'center'}}>There is no Due to show</h5>)}
         </Fragment>
     )
 }

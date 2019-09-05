@@ -1,14 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Moment from 'react-moment';
+import {connect} from 'react-redux';
+import {deleteTask_Done} from '../../actions/done';
 
 
-const DoneItem = ({ done: { task, description, duedate, location } }) => {
+const DoneItem = ({ done: { _id, task, description, duedate, location }, deleteTask_Done }) => {
     return (
         <div className="card border-success">
             <div className="card-header">
                 {task}
-                <button type="button" className="close" >X</button>
+                <button type="button" className="close" onClick={e=>deleteTask_Done(_id)}>X</button>
             </div>
             
             <div className="card-body">
@@ -20,7 +22,8 @@ const DoneItem = ({ done: { task, description, duedate, location } }) => {
 }
 
 DoneItem.propTypes = {
-    done: PropTypes.object.isRequired
+    done: PropTypes.object.isRequired,
+    deleteTask_Done: PropTypes.func.isRequired
 }
 
-export default DoneItem
+export default connect(null, {deleteTask_Done})(DoneItem)

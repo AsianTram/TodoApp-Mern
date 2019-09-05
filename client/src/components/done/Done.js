@@ -11,10 +11,10 @@ const Done = ({getDones, done:{dones, loading}}) => {
     },[getDones]);
     return (
         <Fragment>
-            <h1>Done List</h1>
-            {!loading && dones!== null ? (<Fragment>
+            <h1 style={{textAlign:'center'}}>Done List</h1>
+            {!loading && dones!== null && dones.length>0 ? (<Fragment>
                 {dones.map(done => (<DoneItem key={done._id} done={done}/>))}
-            </Fragment>) : (<p>There is no Done to show</p>)}
+            </Fragment>) : (<h5 style={{textAlign:'center'}}>There is no Done to show</h5>)}
         </Fragment>
     )
 }

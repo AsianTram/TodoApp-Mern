@@ -1,4 +1,4 @@
-import {GET_DUE, GET_DUE_ERROR, CLEAR_DUE} from '../actions/types';
+import {GET_DUE, GET_DUE_ERROR, CLEAR_DUE, DELETE_DUE, DELETE_DUE_ERROR} from '../actions/types';
 
 const initialState={
     dues: null,
@@ -20,7 +20,14 @@ export default function (state=initialState, action){
                 dues: null,
                 loading: false
             }
+        case DELETE_DUE:
+        return{
+            ...state,
+            dues: state.dues.filter(due=> due._id!==payload._id),
+            loading: false
+        }
         default:
+        case DELETE_DUE_ERROR:
             return state
     }
 }

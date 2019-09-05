@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {GET_DUE, GET_DUE_ERROR} from './types';
+import {GET_DUE, GET_DUE_ERROR, DELETE_DUE, DELETE_DUE_ERROR} from './types';
 
 export const getDues= ()=> async dispatch =>{
     try {
@@ -13,6 +13,22 @@ export const getDues= ()=> async dispatch =>{
             type: GET_DUE_ERROR,
             payload:{msg: error.response.statusText, status: error.response.status}
         })
+    }
+        
+    
+}
+
+export const deleteTask_Due= (taskid)=> async dispatch =>{
+    try {
+        const res= await axios.delete(`/api/todo/delete/${taskid}`);
+        dispatch({
+            type: DELETE_DUE,
+            payload: res.data
+        })
+    } catch (error) {
+        dispatch({
+            type: DELETE_DUE_ERROR
+                })
     }
         
     

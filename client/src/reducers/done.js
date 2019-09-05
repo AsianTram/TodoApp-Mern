@@ -1,4 +1,4 @@
-import {GET_DONE, GET_DONE_ERROR, CLEAR_DONE} from '../actions/types';
+import {GET_DONE, GET_DONE_ERROR, CLEAR_DONE, CHECK_DONE, DELETE_DONE, DELETE_DONE_ERROR} from '../actions/types';
 
 const initialState={
     dones: null,
@@ -20,7 +20,20 @@ export default function (state=initialState, action){
                 dones: null,
                 loading: false
             }
+        case CHECK_DONE:
+                return{
+                    ...state,
+                    done: [payload, ...state.dones],
+                    loading: false
+                }
+        case DELETE_DONE:
+                return{
+                    ...state,
+                    dones: state.dones.filter(done=> done._id!==payload._id),
+                    loading: false
+                }
         default:
+        case DELETE_DONE_ERROR:
             return state
     }
 }

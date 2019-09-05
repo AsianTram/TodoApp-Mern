@@ -44,11 +44,11 @@ router.get('/', auth ,async (req,res)=>{
 
         return res.json(filteredTodos);
     }
-        return res.send("You don't have any task yet");
+        return res.json(todos);
 
     } catch (error) {
         console.log(error.message);
-        res.status(500).send('Server error');
+        return res.status(500).send('Server error');
     }  
     
 })
@@ -71,7 +71,7 @@ router.get("/due",auth, async (req,res)=>{
 
         return res.json(filteredTodos);
     }
-        return res.send("You don't have any task yet");
+        return res.send(todos);
     } catch (error) {
         console.log(error.message);
         res.status(500).send('Server error');
@@ -110,7 +110,7 @@ router.delete('/delete/:task_id', auth, async (req,res)=>{
 
     try {
         await Todo.deleteOne({"_id": task_id});
-        res.send(task_id);
+        res.json({_id: task_id});
     } catch (error) {
         console.log(error.message);
         res.status(500).send('Server error');

@@ -1,4 +1,4 @@
-import {GET_TODO, GET_TODO_ERROR, CLEAR_TODO} from '../actions/types';
+import {GET_TODO, GET_TODO_ERROR, CLEAR_TODO, ADD_TODO, ADD_TODO_ERROR, CHECK_DONE, CHECK_DONE_ERROR, DELETE_TODO, DELETE_TODO_ERROR} from '../actions/types';
 
 const initialState={
     todos: null,
@@ -20,7 +20,28 @@ export default function (state=initialState, action){
                 todos: null,
                 loading: false
             }
+        case ADD_TODO:
+            return{
+                ...state,
+                todos: [...state.todos, payload],
+                loading: false
+            }
+        case CHECK_DONE:
+            return{
+                ...state,
+                todos: state.todos.filter(todo=> todo._id!==payload._id),
+                loading: false
+            }
+        case DELETE_TODO:
+            return{
+                ...state,
+                todos: state.todos.filter(todo=> todo._id!==payload._id),
+                loading: false
+            }
         default:
+        case ADD_TODO_ERROR:
+        case CHECK_DONE_ERROR:
+        case DELETE_TODO_ERROR:
             return state
     }
 }
