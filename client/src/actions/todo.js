@@ -1,5 +1,7 @@
 import axios from 'axios';
 import {GET_TODO, GET_TODO_ERROR, ADD_TODO, ADD_TODO_ERROR, CHECK_DONE, CHECK_DONE_ERROR, DELETE_TODO, DELETE_TODO_ERROR} from './types';
+import { setAlert } from './alert';
+
 
 export const getTodos= ()=> async dispatch =>{
     try {
@@ -31,6 +33,8 @@ export const addTodo= ({task, location, duedate, description})=> async dispatch=
             type: ADD_TODO,
             payload: res.data
         })
+        dispatch(setAlert("Adding succeeded", "success"));
+
     } catch (error) {
         console.log(error);
         dispatch({
@@ -47,6 +51,7 @@ export const checkDone= (taskid)=> async dispatch =>{
             type: CHECK_DONE,
             payload: res.data
         })
+        dispatch(setAlert("Check Done succeeded", "success"));
     } catch (error) {
         dispatch({
             type: CHECK_DONE_ERROR
@@ -59,12 +64,11 @@ export const checkDone= (taskid)=> async dispatch =>{
 export const deleteTask_Todo= (taskid)=> async dispatch =>{
     try {
         const res= await axios.delete(`/api/todo/delete/${taskid}`);
-        console.log("hello");
         dispatch({
             type: DELETE_TODO,
             payload: res.data
         })
-        console.log("hello 2");
+        dispatch(setAlert("Deletion succeeded", "success"));
     } catch (error) {
         dispatch({
             type: DELETE_TODO_ERROR

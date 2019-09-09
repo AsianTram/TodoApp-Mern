@@ -13,7 +13,7 @@ const Login = ({login, isAuthenticate}) => {
     })
     const {email,password}=formData;
 
-    const onSubmit=(e)=>{
+    const onSubmit= async(e)=>{
         e.preventDefault();
         login({email,password});
     }

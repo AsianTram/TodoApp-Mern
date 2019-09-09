@@ -5,6 +5,10 @@ export const AUTH_ERROR= "AUTH_ERROR";
 export const LOAD_USER= "LOAD_USER";
 export const LOG_OUT= "LOG_OUT";
 
+export const SET_ALERT= "SET_ALERT";
+export const CLEAR_ALERT= "CLEAR_ALERT";
+
+
 export const GET_TODO= "GET_TODO";
 export const CLEAR_TODO= "CLEAR_TODO";
 export const GET_TODO_ERROR= "GET_TODO_ERROR";

@@ -9,9 +9,11 @@ import store from './store';
 import {setAuthHeader} from './utils/setAuthHeader';
 import {loadUser} from './actions/auth';
 
+import PrivateRoute from './components/routing/PrivateRoute';
 
 import NavBar from './components/layouts/NavBar';
 import Landing from './components/layouts/Landing';
+import Alert from './components/layouts/Alert';
 import SignUp from './components/auth/SignUp';
 import Login from './components/auth/Login';
 import Todo from './components/todo/Todo';
@@ -32,13 +34,13 @@ const App=()=> {
     <Fragment>
       <Router>
       <NavBar/>
-
+      <Alert/>
       <Route exact path="/" component={Landing} />
       <Route path="/signup" component={SignUp} />
       <Route path="/login" component={Login} />
-      <Route path="/todo" component={Todo} />
-      <Route path="/done" component={Done} />
-      <Route path="/due" component={Due} />
+      <PrivateRoute exact path="/todo" component={Todo} />
+      <PrivateRoute exact path="/done" component={Done} />
+      <PrivateRoute exact path="/due" component={Due} />
 
 
       </Router>

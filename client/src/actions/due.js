@@ -1,5 +1,7 @@
 import axios from 'axios';
 import {GET_DUE, GET_DUE_ERROR, DELETE_DUE, DELETE_DUE_ERROR} from './types';
+import { setAlert } from './alert';
+
 
 export const getDues= ()=> async dispatch =>{
     try {
@@ -25,6 +27,8 @@ export const deleteTask_Due= (taskid)=> async dispatch =>{
             type: DELETE_DUE,
             payload: res.data
         })
+        dispatch(setAlert("Deletion succeeded", "success"));
+
     } catch (error) {
         dispatch({
             type: DELETE_DUE_ERROR
