@@ -31,13 +31,13 @@ const NavBar = ({isAuthenticate, logout}) => {
                 </button>
                 <div className={"collapse navbar-collapse "+toggle}>
                     <div className="navbar-nav ml-auto">
-                        {isAuthenticate ? authLinks : guestLinks}}
+                        {isAuthenticate ? authLinks : guestLinks}
                     </div>
                 </div>
             </nav>
         </Fragment>
     )
-}
+    }
 
 NavBar.propTypes={
     logout: PropTypes.func.isRequired,
